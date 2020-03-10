@@ -10,34 +10,50 @@ import UIKit
 
 public protocol NetworkConfigurable {
     var baseURL: URL { get }
-    var headers: [String: String] { get }
-    var queryParameters: [String: String] { get }
 }
 
 public struct ApiDataNetworkConfig: NetworkConfigurable {
     public let baseURL: URL
-    public let headers: [String: String]
-    public let queryParameters: [String: String]
     
-    public init(baseURL: URL,
-                headers: [String: String] = [:],
-                queryParameters: [String: String] = [:]) {
+    public init(baseURL: URL) {
         self.baseURL = baseURL
-        self.headers = headers
-        self.queryParameters = queryParameters
     }
 }
 
 public final class DefaultNetworkService {
     public let config: NetworkConfigurable
+    private let sessionManager: NetworkSessionManager
     
-    public init(config: NetworkConfigurable) {
+    public init(config: NetworkConfigurable,
+                sessionManager: NetworkSessionManager = DefaultNetworkSessionManager()) {
         self.config = config
+        self.sessionManager = sessionManager
     }
 }
 
 extension DefaultNetworkService: NetworkService {
-    public func get(url: String, parameters: [String : Any]?, headers: [String : String]?, encodingType: EncodingType, completion: @escaping CompletionClosure) {
-        completion(Result.success([:]))
+
+    public func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+        
+        do {
+            let request = try endpoint.urlRequest(with: config)
+            sessionManager.request(request) { data, response, requestError in
+                
+                if let _ = requestError {
+                    var error: NetworkError?
+                    if let response = response as? HTTPURLResponse {
+                        error = .error(statusCode: response.statusCode, data: data)
+                    }
+                    if let err = error {
+                        completion(.failure(err))
+                    }
+                    
+                } else {
+                    completion(.success(data))
+                }
+            }
+        } catch {
+            print(error)
+        }
     }
 }

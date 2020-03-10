@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D400DA6241749030058DE82 /* ImagesListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */; };
+		9D400DA9241749620058DE82 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D400DA8241749620058DE82 /* Observable.swift */; };
+		9DCDED5E241785F300388318 /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5D241785F300388318 /* APIEndPoints.swift */; };
+		9DCDED602417884E00388318 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5F2417884E00388318 /* EndPoint.swift */; };
+		9DCDED622417A1BC00388318 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED612417A1BC00388318 /* NetworkSessionManager.swift */; };
+		9DCDED652417C44C00388318 /* Images+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED642417C44C00388318 /* Images+Decodable.swift */; };
+		9DCDED6824181B9600388318 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */; };
 		9DE634ED24172F1D00902BA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE634EC24172F1D00902BA0 /* AppDelegate.swift */; };
 		9DE634F924172F2000902BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DE634F824172F2000902BA0 /* Assets.xcassets */; };
 		9DE634FC24172F2000902BA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE634FA24172F2000902BA0 /* LaunchScreen.storyboard */; };
@@ -38,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCollectionViewController.swift; sourceTree = "<group>"; };
+		9D400DA8241749620058DE82 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		9DCDED5D241785F300388318 /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
+		9DCDED5F2417884E00388318 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		9DCDED612417A1BC00388318 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		9DCDED642417C44C00388318 /* Images+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Images+Decodable.swift"; sourceTree = "<group>"; };
+		9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DE634E924172F1D00902BA0 /* FlickrImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE634EC24172F1D00902BA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DE634F824172F2000902BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +94,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D400DA4241748C80058DE82 /* ImagesListCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */,
+			);
+			path = ImagesListCollectionView;
+			sourceTree = "<group>";
+		};
+		9D400DA7241749550058DE82 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9D400DA8241749620058DE82 /* Observable.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9DCDED5C241785DD00388318 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9DCDED632417C43E00388318 /* DataMapping */,
+				9DCDED5D241785F300388318 /* APIEndPoints.swift */,
+				9DCDED5F2417884E00388318 /* EndPoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9DCDED632417C43E00388318 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				9DCDED642417C44C00388318 /* Images+Decodable.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		9DCDED6624181B6B00388318 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9DE634E024172F1D00902BA0 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +209,7 @@
 		9DE6351424172FBC00902BA0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9DCDED5C241785DD00388318 /* Network */,
 				9DE635492417354400902BA0 /* Repositories */,
 			);
 			path = Data;
@@ -171,6 +228,7 @@
 		9DE6351624172FC700902BA0 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				9D400DA7241749550058DE82 /* Utilities */,
 				9DE63535241732B700902BA0 /* SearchScene */,
 			);
 			path = Presentation;
@@ -181,6 +239,7 @@
 			children = (
 				9DE635182417303200902BA0 /* DefaultNetworkService.swift */,
 				9DE635192417303200902BA0 /* NetworkService.swift */,
+				9DCDED612417A1BC00388318 /* NetworkSessionManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -196,6 +255,8 @@
 		9DE63536241732BE00902BA0 /* ImagesSearch */ = {
 			isa = PBXGroup;
 			children = (
+				9DCDED6624181B6B00388318 /* Cell */,
+				9D400DA4241748C80058DE82 /* ImagesListCollectionView */,
 				9DE63537241732C500902BA0 /* Views */,
 				9DE6353C241732FE00902BA0 /* ViewModels */,
 			);
@@ -377,16 +438,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D400DA9241749620058DE82 /* Observable.swift in Sources */,
 				9DE63555241737CD00902BA0 /* AppDIContainer.swift in Sources */,
 				9DE634ED24172F1D00902BA0 /* AppDelegate.swift in Sources */,
+				9DCDED6824181B9600388318 /* ImageCollectionViewCell.swift in Sources */,
 				9DE6354B2417355700902BA0 /* DefaultImagesSearchRepository.swift in Sources */,
 				9DE635422417344800902BA0 /* ImagesSearchRepository.swift in Sources */,
 				9DE635482417351F00902BA0 /* Image.swift in Sources */,
 				9DE6351B2417303200902BA0 /* NetworkService.swift in Sources */,
+				9DCDED5E241785F300388318 /* APIEndPoints.swift in Sources */,
 				9DE6353E2417331500902BA0 /* ImagesSearchViewModel.swift in Sources */,
 				9DE6351A2417303200902BA0 /* DefaultNetworkService.swift in Sources */,
 				9DE63529241731BC00902BA0 /* AppConfigurations.swift in Sources */,
+				9DCDED622417A1BC00388318 /* NetworkSessionManager.swift in Sources */,
 				9DE63539241732DE00902BA0 /* ImagesSearchViewController.swift in Sources */,
+				9DCDED652417C44C00388318 /* Images+Decodable.swift in Sources */,
+				9DCDED602417884E00388318 /* EndPoint.swift in Sources */,
+				9D400DA6241749030058DE82 /* ImagesListCollectionViewController.swift in Sources */,
 				9DE63528241731BC00902BA0 /* AppAppearance.swift in Sources */,
 				9DE635502417377500902BA0 /* StoryboardInstantiable.swift in Sources */,
 				9DE63554241737CD00902BA0 /* ImagesSceneDIContainer.swift in Sources */,
@@ -541,7 +609,7 @@
 		9DE6350C24172F2000902BA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_BASE_URL = "https://www.flickr.com/";
+				API_BASE_URL = "https://api.flickr.com/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P46FE2ZJZT;
@@ -560,7 +628,7 @@
 		9DE6350D24172F2000902BA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_BASE_URL = "https://www.flickr.com/";
+				API_BASE_URL = "https://api.flickr.com/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P46FE2ZJZT;

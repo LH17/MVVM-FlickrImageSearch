@@ -7,5 +7,5 @@
 //
 
 protocol ImagesSearchRepository {
-    
+     func searchImages(with query: Image, page: Int, completion: @escaping (Result<Image, String?>) -> Void)
 }

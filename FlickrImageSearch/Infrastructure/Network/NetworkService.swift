@@ -28,6 +28,12 @@ public enum ServerError: Error {
     case error(String?)
 }
 
+public enum NetworkError: Error {
+    case error(statusCode: Int, data: Data?)
+}
+    
+public typealias CompletionHandler = (Result<Data?, NetworkError>) -> Void
+
 /// Enum used to define how a set of parameters are applied to a `URLRequest`.
 ///
 /// - url: Uses `JSONSerialization` which is set as the body of the request
@@ -39,8 +45,6 @@ public enum EncodingType {
 
 /// Protocol implemented by the NetworkManager class to include methods with POST, DELETE, PUT PATCH, GET requests
 public protocol NetworkService {
-
-    func get(url: String, parameters: [String: Any]?, headers: [String: String]?, encodingType: EncodingType,
-             completion: @escaping CompletionClosure)
     var config: NetworkConfigurable { get }
+    func request(endpoint: EndPoint, completion: @escaping CompletionHandler)
 }
