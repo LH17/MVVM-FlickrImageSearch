@@ -11,20 +11,17 @@ import UIKit
 class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
     
     @IBOutlet private var contentView: UIView!
-    @IBOutlet private var moviesListContainer: UIView!
-    @IBOutlet private var suggestionsListContainer: UIView!
     @IBOutlet private var searchBarContainer: UIView!
     @IBOutlet private var loadingView: UIActivityIndicatorView!
     @IBOutlet private var emptyDataLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private(set) var viewModel: ImagesSearchViewModel!
     
-    private var moviesQueriesSuggestionsView: UIViewController?
-    private var imagesCollectionVC: ImagesListViewController?
-    
     private lazy var searchController = { () -> UISearchController in
         var searchController = UISearchController(searchResultsController: nil)
-        searchController.delegate = self
+        searchController.searchBar.backgroundColor = .blue
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = viewModel.searchBarPlaceholder
         searchController.obscuresBackgroundDuringPresentation = false
@@ -36,7 +33,7 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
         definesPresentationContext = true
         return searchController
     }()
-    
+
     static func create(with viewModel: ImagesSearchViewModel?) -> ImagesSearchViewController {
         let view = ImagesSearchViewController.instantiateViewController()
         view.viewModel = viewModel
@@ -46,20 +43,46 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = viewModel.screenTitle
-        emptyDataLabel.text = viewModel.emptyDataTitle
-        setupSearchController()
+        containerView.addSubview(collectionView)
+        searchBarContainer.addSubview(searchController.searchBar)
+        collectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
+        collectionView.backgroundColor = .white
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: 0.29 * UIScreen.main.bounds.width, height: 160)
+        collectionView.collectionViewLayout = layout
         
+        loadingView.hidesWhenStopped = true
+        title = viewModel.screenTitle
+
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
     
     private func bind(to viewModel: ImagesSearchViewModel) {
-//        viewModel.route.observe(on: self) { [weak self] in self?.handle($0) }
-//        viewModel.items.observe(on: self) { [weak self] in self?.moviesTableViewController?.items = $0 }
-        viewModel.query.observe(on: self) { [weak self] in self?.updateSearchController(query: $0) }
-        viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
-        viewModel.loadingType.observe(on: self) { [weak self] _ in self?.updateViewsVisibility() }
+        viewModel.viewModelCellArray.observe(on: self) { [weak self] _ in
+            self?.collectionView.dataSource = self
+            self?.collectionView.delegate = self
+            self?.collectionView.reloadData()
+        }
+        
+        viewModel.isLoading.observe(on: self) { [weak self] value in
+            if value {
+                // show loader
+                self?.loadingView.startAnimating()
+                self?.emptyDataLabel.text = nil
+            } else {
+                // hide loader
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadingView.stopAnimating()
+                }
+            }
+        }
+        
+        viewModel.error.observe(on: self) { [weak self] value in
+            self?.loadingView.stopAnimating()
+            self?.emptyDataLabel.text = value
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,81 +94,40 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
         searchController.isActive = false
         searchController.searchBar.text = query
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
-    func showError(_ error: String) {
-        guard !error.isEmpty else { return }
-//        showAlert(title: viewModel.errorTitle, message: error)
-    }
-    
-    private func updateViewsVisibility() {
-        loadingView.isHidden = true
-        emptyDataLabel.isHidden = true
-        moviesListContainer.isHidden = true
-        suggestionsListContainer.isHidden = true
-        
-        switch viewModel.loadingType.value {
-        case .none: updateMoviesListVisibility()
-        case .fullScreen: loadingView.isHidden = false
-        case .nextPage: moviesListContainer.isHidden = false
-        }
-        updateQueriesSuggestionsVisibility()
-    }
-    
-    private func updateMoviesListVisibility() {
-//        guard !viewModel.isEmpty else {
-//            emptyDataLabel.isHidden = false
-//            return
-//        }
-//        moviesListContainer.isHidden = false
-    }
-    
-    private func updateQueriesSuggestionsVisibility() {
-        guard searchController.searchBar.isFirstResponder else {
-            viewModel.closeQueriesSuggestions()
-            return
-        }
-        viewModel.showQueriesSuggestions()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 }
 
 extension ImagesSearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        viewModel.callTimer(with: searchText)
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        searchController.isActive = false
-//        moviesTableViewController?.tableView.setContentOffset(CGPoint.zero, animated: false)
+        searchController.isActive = true
         viewModel.didSearch(query: searchText)
     }
+}
+
+extension ImagesSearchViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.section
+    }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.didCancelSearch()
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.getNumberOfRows()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell
+        let cellVM = viewModel.getCellVM(at: indexPath)
+        cell?.cellViewModel = cellVM
+        return cell ?? UICollectionViewCell()
     }
 }
 
-extension ImagesSearchViewController: UISearchControllerDelegate {
-    public func willPresentSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-    
-    public func willDismissSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-    
-    public func didDismissSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-}
-// MARK: - Setup Search Controller
-
-extension ImagesSearchViewController {
-    private func setupSearchController() {
-        searchBarContainer.addSubview(searchController.searchBar)
+extension ImagesSearchViewController: UICollectionViewDelegate, UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        viewModel.didLoadNextPage()
     }
 }

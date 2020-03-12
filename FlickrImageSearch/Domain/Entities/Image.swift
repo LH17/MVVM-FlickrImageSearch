@@ -19,6 +19,7 @@ struct Photo {
     var title: String?
     var id: String?
     var owner: String?
+    var url: String?
     var secret: String?
     var server: String?
     var farm: Int?

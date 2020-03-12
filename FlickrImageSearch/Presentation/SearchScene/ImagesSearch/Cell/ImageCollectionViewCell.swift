@@ -17,15 +17,13 @@ final class ImageCollectionViewCell: UICollectionViewCell {
     var cellViewModel: PhotoListViewModelCell? {
         didSet {
             DispatchQueue.main.async {
-                
+                guard let urlString = self.cellViewModel?.imageUrl else {
+                    return
+                }
+                self.imageview.downloadImageFrom(urlString: urlString, imageMode: .scaleAspectFill)
             }
             descLabel.text = cellViewModel?.descText
         }
-    }
-    
-    override func awakeFromNib() {
-        superview?.awakeFromNib()
-        placeholder = UIImage(named: "")
     }
     
     override func layoutSubviews() {
@@ -33,5 +31,10 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 4
         layer.borderWidth = 1
         layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageview.image = nil
     }
 }

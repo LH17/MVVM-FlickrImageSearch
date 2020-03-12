@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RequestGenerationError: Error {
+enum URLError: Error {
     case components
 }
 
@@ -31,14 +31,14 @@ public struct EndPoint {
         let baseURL = config.baseURL.absoluteString
         let endpoint = baseURL.appending(path)
         
-        guard var urlComponents = URLComponents(string: endpoint) else { throw RequestGenerationError.components }
+        guard var urlComponents = URLComponents(string: endpoint) else { throw URLError.components }
         var urlQueryItems = [URLQueryItem]()
         
         queryParameters.forEach {
             urlQueryItems.append(URLQueryItem(name: $0.key, value: "\($0.value)"))
         }
         urlComponents.queryItems = !urlQueryItems.isEmpty ? urlQueryItems : nil
-        guard let url = urlComponents.url else { throw RequestGenerationError.components }
+        guard let url = urlComponents.url else { throw URLError.components }
         return url
     }
 }

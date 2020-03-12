@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D400DA6241749030058DE82 /* ImagesListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */; };
+		9D3007032419CF3800110FA8 /* DebounceTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3007022419CF3800110FA8 /* DebounceTimer.swift */; };
 		9D400DA9241749620058DE82 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D400DA8241749620058DE82 /* Observable.swift */; };
 		9DCDED5E241785F300388318 /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5D241785F300388318 /* APIEndPoints.swift */; };
 		9DCDED602417884E00388318 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5F2417884E00388318 /* EndPoint.swift */; };
 		9DCDED622417A1BC00388318 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED612417A1BC00388318 /* NetworkSessionManager.swift */; };
 		9DCDED652417C44C00388318 /* Images+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED642417C44C00388318 /* Images+Decodable.swift */; };
 		9DCDED6824181B9600388318 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */; };
+		9DCDED6A24181CF300388318 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DCDED6924181CF300388318 /* ImageCell.xib */; };
+		9DCDED6C24181D3300388318 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED6B24181D3300388318 /* UIImageView+Extensions.swift */; };
 		9DE634ED24172F1D00902BA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE634EC24172F1D00902BA0 /* AppDelegate.swift */; };
 		9DE634F924172F2000902BA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DE634F824172F2000902BA0 /* Assets.xcassets */; };
 		9DE634FC24172F2000902BA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE634FA24172F2000902BA0 /* LaunchScreen.storyboard */; };
@@ -45,13 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCollectionViewController.swift; sourceTree = "<group>"; };
+		9D3007022419CF3800110FA8 /* DebounceTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebounceTimer.swift; sourceTree = "<group>"; };
 		9D400DA8241749620058DE82 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9DCDED5D241785F300388318 /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
 		9DCDED5F2417884E00388318 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		9DCDED612417A1BC00388318 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		9DCDED642417C44C00388318 /* Images+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Images+Decodable.swift"; sourceTree = "<group>"; };
 		9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DCDED6924181CF300388318 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		9DCDED6B24181D3300388318 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		9DE634E924172F1D00902BA0 /* FlickrImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE634EC24172F1D00902BA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DE634F824172F2000902BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,18 +98,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9D400DA4241748C80058DE82 /* ImagesListCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				9D400DA5241749030058DE82 /* ImagesListCollectionViewController.swift */,
-			);
-			path = ImagesListCollectionView;
-			sourceTree = "<group>";
-		};
 		9D400DA7241749550058DE82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				9D400DA8241749620058DE82 /* Observable.swift */,
+				9DCDED6B24181D3300388318 /* UIImageView+Extensions.swift */,
+				9D3007022419CF3800110FA8 /* DebounceTimer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -132,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				9DCDED6724181B9600388318 /* ImageCollectionViewCell.swift */,
+				9DCDED6924181CF300388318 /* ImageCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -256,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				9DCDED6624181B6B00388318 /* Cell */,
-				9D400DA4241748C80058DE82 /* ImagesListCollectionView */,
 				9DE63537241732C500902BA0 /* Views */,
 				9DE6353C241732FE00902BA0 /* ViewModels */,
 			);
@@ -419,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE634FC24172F2000902BA0 /* LaunchScreen.storyboard in Resources */,
+				9DCDED6A24181CF300388318 /* ImageCell.xib in Resources */,
 				9DE634F924172F2000902BA0 /* Assets.xcassets in Resources */,
 				9DE6353B241732F200902BA0 /* ImagesSearchViewController.storyboard in Resources */,
 			);
@@ -440,6 +439,8 @@
 			files = (
 				9D400DA9241749620058DE82 /* Observable.swift in Sources */,
 				9DE63555241737CD00902BA0 /* AppDIContainer.swift in Sources */,
+				9D3007032419CF3800110FA8 /* DebounceTimer.swift in Sources */,
+				9DCDED6C24181D3300388318 /* UIImageView+Extensions.swift in Sources */,
 				9DE634ED24172F1D00902BA0 /* AppDelegate.swift in Sources */,
 				9DCDED6824181B9600388318 /* ImageCollectionViewCell.swift in Sources */,
 				9DE6354B2417355700902BA0 /* DefaultImagesSearchRepository.swift in Sources */,
@@ -454,7 +455,6 @@
 				9DE63539241732DE00902BA0 /* ImagesSearchViewController.swift in Sources */,
 				9DCDED652417C44C00388318 /* Images+Decodable.swift in Sources */,
 				9DCDED602417884E00388318 /* EndPoint.swift in Sources */,
-				9D400DA6241749030058DE82 /* ImagesListCollectionViewController.swift in Sources */,
 				9DE63528241731BC00902BA0 /* AppAppearance.swift in Sources */,
 				9DE635502417377500902BA0 /* StoryboardInstantiable.swift in Sources */,
 				9DE63554241737CD00902BA0 /* ImagesSceneDIContainer.swift in Sources */,
