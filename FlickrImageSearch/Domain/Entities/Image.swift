@@ -13,6 +13,11 @@ struct Image {
     init(name: String) {
         self.name = name
     }
+    
+    init(name: String?, photos: [Photo]?) {
+        self.name = name
+        self.photos = photos
+    }
 }
 
 struct Photo {

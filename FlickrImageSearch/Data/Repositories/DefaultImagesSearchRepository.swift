@@ -19,7 +19,7 @@ final class DefaultImagesSearchRepository {
 
 extension DefaultImagesSearchRepository: ImagesSearchRepository {
     func searchImages(with query: Image, page: Int, completion: @escaping (Result<Image, String?>) -> Void) {
-        let endPoint = APIEndpoints.images(query: query.name ?? "", page: page)
+        let endPoint = APIEndpoints.images(query: query.name, page: page)
         networkService.request(endpoint: endPoint) { result in
             switch result{
             case .success(let data):
@@ -38,7 +38,8 @@ extension DefaultImagesSearchRepository: ImagesSearchRepository {
                     print("JSON error: \(error.localizedDescription)")
                     completion(Result.failure(error.localizedDescription))
                 }
-           default: break
+            case .failure(let error):
+                completion(Result.failure(error.localizedDescription))
             }
         }
     }

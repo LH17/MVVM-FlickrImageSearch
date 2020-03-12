@@ -8,9 +8,6 @@
 
 import Foundation
 
-/// typealias for the completion closure type
-public typealias CompletionClosure = (Result<[String: Any], Error>) -> Void
-
 /// Enum to manage the success and failure cases during network integration
 /// - success: success case (200 - 300 status code)
 /// - failure: failure case (encountered when thr request cannot be sent to the server e.g. internet connection error)
@@ -18,7 +15,6 @@ public typealias CompletionClosure = (Result<[String: Any], Error>) -> Void
 public enum Result<U, T> {
     case success(U)
     case failure(T)
-    case error(U)
 }
 
 /// Enum to manage error encountered during network integration
