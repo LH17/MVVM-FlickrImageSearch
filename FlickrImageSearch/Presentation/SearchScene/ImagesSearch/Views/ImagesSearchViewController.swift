@@ -27,6 +27,7 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.translatesAutoresizingMaskIntoConstraints = true
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.searchTextField.returnKeyType = .done
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.frame = searchBarContainer.bounds
         searchController.searchBar.autoresizingMask = [.flexibleWidth]
@@ -106,9 +107,7 @@ extension ImagesSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        searchController.isActive = true
-        viewModel.didSearch(query: searchText)
+        searchBar.searchTextField.resignFirstResponder()
     }
 }
 
