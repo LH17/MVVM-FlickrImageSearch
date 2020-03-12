@@ -44,7 +44,7 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Images" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndK-Lk-h7r">
-                                        <rect key="frame" x="150.5" y="416" width="113.5" height="20.5"/>
+                                        <rect key="frame" x="10" y="416" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -67,12 +67,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="ndK-Lk-h7r" firstAttribute="centerY" secondItem="QnT-Zb-jt1" secondAttribute="centerY" id="ARY-or-btj"/>
+                                    <constraint firstItem="ndK-Lk-h7r" firstAttribute="leading" secondItem="QnT-Zb-jt1" secondAttribute="leading" constant="10" id="Fc7-C9-jUc"/>
                                     <constraint firstAttribute="trailing" secondItem="IjA-Bg-hEB" secondAttribute="trailing" id="M63-kw-k0j"/>
                                     <constraint firstItem="IjA-Bg-hEB" firstAttribute="leading" secondItem="QnT-Zb-jt1" secondAttribute="leading" id="NdP-r7-is4"/>
                                     <constraint firstItem="YCN-qW-i8w" firstAttribute="top" secondItem="SOR-Ib-4z3" secondAttribute="bottom" id="RM2-JH-gC2"/>
                                     <constraint firstAttribute="bottom" secondItem="IjA-Bg-hEB" secondAttribute="bottom" id="V41-2r-1cU"/>
                                     <constraint firstItem="SOR-Ib-4z3" firstAttribute="top" secondItem="QnT-Zb-jt1" secondAttribute="top" id="VA4-5Y-ntp"/>
                                     <constraint firstAttribute="trailing" secondItem="SOR-Ib-4z3" secondAttribute="trailing" id="dHM-9R-HhG"/>
+                                    <constraint firstAttribute="trailing" secondItem="ndK-Lk-h7r" secondAttribute="trailing" constant="10" id="eHJ-dC-2E6"/>
                                     <constraint firstItem="ndK-Lk-h7r" firstAttribute="centerX" secondItem="QnT-Zb-jt1" secondAttribute="centerX" id="fgW-Lf-i2k"/>
                                     <constraint firstItem="5bz-YA-oSH" firstAttribute="centerX" secondItem="QnT-Zb-jt1" secondAttribute="centerX" id="gbL-Ms-Dt0"/>
                                     <constraint firstItem="SOR-Ib-4z3" firstAttribute="leading" secondItem="QnT-Zb-jt1" secondAttribute="leading" id="ih6-gi-h6Y"/>

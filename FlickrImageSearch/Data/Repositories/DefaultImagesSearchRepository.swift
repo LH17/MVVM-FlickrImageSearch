@@ -32,7 +32,7 @@ extension DefaultImagesSearchRepository: ImagesSearchRepository {
                             completion(Result.success(imageObject))
                         }
                     } else {
-                        completion(Result.failure("Data is not correct"))
+                        completion(Result.failure(Constants.dataIncorrect.rawValue))
                     }
                 } catch {
                     print("JSON error: \(error.localizedDescription)")

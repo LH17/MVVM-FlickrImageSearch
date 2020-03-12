@@ -43,20 +43,28 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        containerView.addSubview(collectionView)
+        registerCollectionView()
         searchBarContainer.addSubview(searchController.searchBar)
-        collectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
+        loadingView.hidesWhenStopped = true
+        
+        title = viewModel.screenTitle
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
+    }
+    
+    private func registerCollectionView() {
+        containerView.addSubview(collectionView)
+       
+        
+        collectionView.register(UINib(nibName: Constants.imageCellIdentifier.rawValue, bundle: nil),
+                                forCellWithReuseIdentifier: Constants.imageCell.rawValue)
         collectionView.backgroundColor = .white
+        collectionView.keyboardDismissMode = .onDrag
+
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 10)
         layout.itemSize = CGSize(width: 0.29 * UIScreen.main.bounds.width, height: 160)
         collectionView.collectionViewLayout = layout
-        
-        loadingView.hidesWhenStopped = true
-        title = viewModel.screenTitle
-
-        bind(to: viewModel)
-        viewModel.viewDidLoad()
     }
     
     private func bind(to viewModel: ImagesSearchViewModel) {
@@ -89,11 +97,6 @@ class ImagesSearchViewController: UIViewController, StoryboardInstantiable {
         super.viewWillDisappear(animated)
         searchController.isActive = false
     }
-    
-    private func updateSearchController(query: String) {
-        searchController.isActive = false
-        searchController.searchBar.text = query
-    }
 }
 
 extension ImagesSearchViewController: UISearchBarDelegate {
@@ -119,7 +122,7 @@ extension ImagesSearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.imageCell.rawValue, for: indexPath) as? ImageCollectionViewCell
         let cellVM = viewModel.getCellVM(at: indexPath)
         cell?.cellViewModel = cellVM
         return cell ?? UICollectionViewCell()

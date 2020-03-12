@@ -8,7 +8,7 @@
 
 
 protocol ImagesSearchUseCase {
-     func searchImages(with query: Image, page: Int, completion: @escaping (Result<[Photo], Error>) -> Void)
+     func searchImages(with query: Image, page: Int, completion: @escaping (Result<[Photo], String>) -> Void)
 }
 
 final class DefaultImagesSearchUseCase: ImagesSearchUseCase {
@@ -19,7 +19,7 @@ final class DefaultImagesSearchUseCase: ImagesSearchUseCase {
         self.imagesSearchRepository = imagesSearchRepository
     }
     
-    func searchImages(with query: Image, page: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
+    func searchImages(with query: Image, page: Int, completion: @escaping (Result<[Photo], String>) -> Void) {
         imagesSearchRepository.searchImages(with: query, page: page) { result in
             switch result {
             case .success(let imageObject):
@@ -32,6 +32,8 @@ final class DefaultImagesSearchUseCase: ImagesSearchUseCase {
                     photos.append(data)
                 }
                 completion(Result.success(photos))
+            case .failure(let errorMessage):
+                completion(Result.failure(errorMessage ?? "Error Occured"))
             default: break
             }
         }

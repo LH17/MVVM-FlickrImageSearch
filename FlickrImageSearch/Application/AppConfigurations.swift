@@ -10,7 +10,7 @@ import Foundation
 final class AppConfigurations {
     lazy var imagesBaseURL: String = {
         guard let imageBaseURL = Bundle.main.object(forInfoDictionaryKey: "ApiBaseURL") as? String else {
-            fatalError("ApiBaseURL must not be empty in plist")
+            fatalError(Constants.baseUrlError.rawValue)
         }
         return imageBaseURL
     }()

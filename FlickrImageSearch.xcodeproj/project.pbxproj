@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D3007032419CF3800110FA8 /* DebounceTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3007022419CF3800110FA8 /* DebounceTimer.swift */; };
+		9D3007062419D94C00110FA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3007052419D94C00110FA8 /* Constants.swift */; };
 		9D400DA9241749620058DE82 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D400DA8241749620058DE82 /* Observable.swift */; };
 		9DCDED5E241785F300388318 /* APIEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5D241785F300388318 /* APIEndPoints.swift */; };
 		9DCDED602417884E00388318 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDED5F2417884E00388318 /* EndPoint.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		9D3007022419CF3800110FA8 /* DebounceTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebounceTimer.swift; sourceTree = "<group>"; };
+		9D3007052419D94C00110FA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9D400DA8241749620058DE82 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9DCDED5D241785F300388318 /* APIEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoints.swift; sourceTree = "<group>"; };
 		9DCDED5F2417884E00388318 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D3007042419D93400110FA8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9D3007052419D94C00110FA8 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		9D400DA7241749550058DE82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		9DE6351324172FAD00902BA0 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				9D3007042419D93400110FA8 /* Constants */,
 				9DE63551241737B700902BA0 /* DIContainer */,
 				9DE6354E2417376400902BA0 /* Protocols */,
 				9DE6351C241731BC00902BA0 /* AppAppearance.swift */,
@@ -443,6 +454,7 @@
 				9DCDED6C24181D3300388318 /* UIImageView+Extensions.swift in Sources */,
 				9DE634ED24172F1D00902BA0 /* AppDelegate.swift in Sources */,
 				9DCDED6824181B9600388318 /* ImageCollectionViewCell.swift in Sources */,
+				9D3007062419D94C00110FA8 /* Constants.swift in Sources */,
 				9DE6354B2417355700902BA0 /* DefaultImagesSearchRepository.swift in Sources */,
 				9DE635422417344800902BA0 /* ImagesSearchRepository.swift in Sources */,
 				9DE635482417351F00902BA0 /* Image.swift in Sources */,

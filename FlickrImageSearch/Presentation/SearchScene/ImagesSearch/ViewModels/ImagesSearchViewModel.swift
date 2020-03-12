@@ -93,6 +93,9 @@ extension DefaultImagesSearchViewModel {
                 self?.createViewModelCell(photos)
                 self?.isLoading.value = false
                 self?.error.value = nil
+            case .failure(let errorMessage):
+                self?.error.value = errorMessage
+                self?.viewModelCellArray.value = []
             default: break
             }
         }
