@@ -96,7 +96,6 @@ extension DefaultImagesSearchViewModel {
             case .failure(let errorMessage):
                 self?.error.value = errorMessage
                 self?.viewModelCellArray.value = []
-            default: break
             }
         }
     }
@@ -104,7 +103,9 @@ extension DefaultImagesSearchViewModel {
     private func createViewModelCell(_ photos: [Photo]) {
         var viewModelCells: [PhotoListViewModelCell] = []
         for photo in photos {
-            viewModelCells.append(PhotoListViewModelCell(imageUrl: photo.url ?? "", descText: photo.title ?? ""))
+            if let url = photo.url, let title = photo.title {
+                viewModelCells.append(PhotoListViewModelCell(imageUrl: url, descText: title))
+            }
         }
         viewModelCellArray.value += viewModelCells
     }

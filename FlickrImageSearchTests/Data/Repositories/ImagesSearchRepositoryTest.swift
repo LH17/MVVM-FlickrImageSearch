@@ -34,7 +34,7 @@ class ImagesSearchRepositoryTest: XCTestCase {
     class NetwrokServiceSuccessMock: NetworkService {
         var config: NetworkConfigurable = NetworkConfigurableMock(url: URL(string: "https://api.flickr.com/")!)
         
-        func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+        func request(endpoint: Requestable, completion: @escaping CompletionHandler) {
             let string = """
                 {
                   "photos": {
@@ -54,7 +54,7 @@ class ImagesSearchRepositoryTest: XCTestCase {
     class NetwrokServiceNilDataMock: NetworkService {
         var config: NetworkConfigurable = NetworkConfigurableMock(url: URL(string: "https://api.flickr.com/")!)
         
-        func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+        func request(endpoint: Requestable, completion: @escaping CompletionHandler) {
             completion(Result.success(nil))
         }
     }
@@ -62,7 +62,7 @@ class ImagesSearchRepositoryTest: XCTestCase {
     class NetwrokServiceErrorDataMock: NetworkService {
         var config: NetworkConfigurable = NetworkConfigurableMock(url: URL(string: "https://api.flickr.com/")!)
         
-        func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+        func request(endpoint: Requestable, completion: @escaping CompletionHandler) {
             let string = """
                 {
                   "photos": {
@@ -80,7 +80,7 @@ class ImagesSearchRepositoryTest: XCTestCase {
     class NetwrokServiceNilFailureMock: NetworkService {
         var config: NetworkConfigurable = NetworkConfigurableMock(url: URL(string: "https://api.flickr.com/")!)
         
-        func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+        func request(endpoint: Requestable, completion: @escaping CompletionHandler) {
             completion(Result.failure(NetworkError.error(statusCode: 500, data: nil)))
         }
     }

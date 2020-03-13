@@ -11,8 +11,13 @@ import Foundation
 enum URLError: Error {
     case components
 }
+public protocol Requestable {
+    var path: String { get set }
+    var queryParameters: [String: Any] { get set }
+    func urlRequest(with config: NetworkConfigurable) throws -> URLRequest
+}
 
-public struct EndPoint {
+public struct EndPoint: Requestable {
     public var path: String
     public var queryParameters: [String: Any]
     

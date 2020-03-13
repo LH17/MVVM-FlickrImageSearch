@@ -33,7 +33,7 @@ public final class DefaultNetworkService {
 
 extension DefaultNetworkService: NetworkService {
 
-    public func request(endpoint: EndPoint, completion: @escaping CompletionHandler) {
+    public func request(endpoint: Requestable, completion: @escaping CompletionHandler) {
         
         do {
             let request = try endpoint.urlRequest(with: config)
@@ -53,7 +53,7 @@ extension DefaultNetworkService: NetworkService {
                 }
             }
         } catch {
-            print(error)
+            completion(.failure(NetworkError.error(statusCode: -1, data: "URL Error".data(using: .utf8))))
         }
     }
 }

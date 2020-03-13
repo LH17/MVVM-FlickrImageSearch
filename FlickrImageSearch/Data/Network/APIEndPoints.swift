@@ -10,7 +10,7 @@ import Foundation
 
 struct APIEndpoints {
     
-    static func images(query: String?, page: Int) -> EndPoint {
+    static func images(query: String?, page: Int) -> Requestable {
         
         return EndPoint(path: "services/rest/",
                         queryParameters: ["method": "flickr.photos.search",
